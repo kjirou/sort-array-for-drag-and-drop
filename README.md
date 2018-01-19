@@ -1,5 +1,8 @@
 # sort-array-for-drag-and-drop
 
+[![npm version](https://badge.fury.io/js/sort-array-for-drag-and-drop.svg)](https://badge.fury.io/js/sort-array-for-drag-and-drop)
+[![Build Status](https://travis-ci.org/kjirou/sort-array-for-drag-and-drop.svg?branch=master)](https://travis-ci.org/kjirou/sort-array-for-drag-and-drop)
+
 Simple array sort logics to use when implements drag and drop
 
 
