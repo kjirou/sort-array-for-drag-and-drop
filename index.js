@@ -1,11 +1,18 @@
+/**
+ * Move an element before the specified element
+ * @return {Array} array
+ * @param {number} fromIndex zero-based index, only >= 0
+ * @param {number} toIndex zero-based index, only >= 0
+ * @return {Array}
+ */
 const moveElement = (array, fromIndex, toIndex) => {
-  const newArray ary.slice();
+  const newArray = array.slice();
 
   if (toIndex < fromIndex) {
     newArray.splice(fromIndex, 1);
-    newArray.splice(toIndex, 0, ary[fromIndex]);
+    newArray.splice(toIndex, 0, array[fromIndex]);
   } else if (toIndex > fromIndex) {
-    newArray.splice(toIndex, 0, ary[fromIndex]);
+    newArray.splice(toIndex, 0, array[fromIndex]);
     newArray.splice(fromIndex, 1);
   }
 
@@ -16,7 +23,15 @@ const moveElementByValue = (array, movedValue, destinationValue, insertBehind = 
   const movedValueIndex = array.indexOf(movedValue);
   const destinationValueIndex = array.indexOf(destinationValue);
 
-  return moveElement(array, movedValueIndex, destinationValueIndex + insertBehind ? 1 : 0);
+  if (movedValueIndex === -1) {
+    throw new Error(`The array does not include \`${movedValue}\``);
+  } else if (destinationValueIndex === -1) {
+    throw new Error(`The array does not include \`${destinationValue}\``);
+  }
+
+  const toIndex = destinationValueIndex + (insertBehind ? 1 : 0);
+
+  return moveElement(array, movedValueIndex, toIndex);
 };
 
 module.exports = {

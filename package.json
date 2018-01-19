@@ -4,7 +4,7 @@
   "description": "Simple array sort logics to use when implements drag and drop",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "$(npm bin)/mocha"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,6 @@
     "LICENSE",
     "README.md",
     "index.js",
-    "lib",
     "package.json"
   ],
   "devDependencies": {
