@@ -1,0 +1,34 @@
+{
+  "name": "sort-array-for-drag-and-drop",
+  "version": "0.0.0",
+  "description": "Simple array sort logics to use when implements drag and drop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kjirou/sort-array-for-drag-and-drop.git"
+  },
+  "keywords": [
+    "sort",
+    "array",
+    "drag-and-drop"
+  ],
+  "author": "kjirou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kjirou/sort-array-for-drag-and-drop/issues"
+  },
+  "homepage": "https://github.com/kjirou/sort-array-for-drag-and-drop#readme",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js",
+    "lib",
+    "package.json"
+  ],
+  "devDependencies": {
+    "mocha": "^5.0.0"
+  }
+}
