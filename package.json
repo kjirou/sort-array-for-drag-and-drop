@@ -1,6 +1,6 @@
 {
   "name": "sort-array-for-drag-and-drop",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Simple array sort logics to use when implements drag and drop",
   "main": "index.js",
   "scripts": {
