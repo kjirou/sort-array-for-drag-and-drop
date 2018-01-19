@@ -1,5 +1,5 @@
 /**
- * Move an element before the specified element
+ * Move an element to the front of the specified element
  * @return {Array} array
  * @param {number} fromIndex zero-based index, only >= 0
  * @param {number} toIndex zero-based index, only >= 0
@@ -19,6 +19,14 @@ const moveElement = (array, fromIndex, toIndex) => {
   return newArray;
 };
 
+/**
+ * Move an element to the front of the specified element by value
+ * @return {Array} array
+ * @param {any} movedValue
+ * @param {any} destinationValue
+ * @param {boolean} insertBehind If true, insert it after the specified value
+ * @return {Array}
+ */
 const moveElementByValue = (array, movedValue, destinationValue, insertBehind = false) => {
   const movedValueIndex = array.indexOf(movedValue);
   const destinationValueIndex = array.indexOf(destinationValue);
