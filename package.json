@@ -21,6 +21,10 @@
     "url": "https://github.com/kjirou/sort-array-for-drag-and-drop/issues"
   },
   "homepage": "https://github.com/kjirou/sort-array-for-drag-and-drop#readme",
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
   "files": [
     "LICENSE",
     "README.md",
