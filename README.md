@@ -53,7 +53,7 @@ console.log(moveElementByValue(array, 'D', 'C'));  // -> Error! ('D' is not incl
 ### `moveElementBy`
 
 ```js
-const {moveElementBy} = require('..');
+const {moveElementBy} = require('sort-array-for-drag-and-drop');
 
 // The values must be unique
 const a = {value: 'a'};
