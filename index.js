@@ -32,7 +32,7 @@ const moveElementByValue = (array, movedValue, destinationValue, insertBehind = 
 };
 
 /**
- * Move an element to the front of the specified element by value
+ * Move an element to the front of the specified element by value compared with getValue result
  * @return {Array} array
  * @param {Function} getValue return value to find moved and destination value
  * @param {any} movedValue
