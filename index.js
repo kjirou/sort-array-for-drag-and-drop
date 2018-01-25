@@ -28,8 +28,33 @@ const moveElement = (array, fromIndex, toIndex) => {
  * @return {Array}
  */
 const moveElementByValue = (array, movedValue, destinationValue, insertBehind = false) => {
-  const movedValueIndex = array.indexOf(movedValue);
-  const destinationValueIndex = array.indexOf(destinationValue);
+  return moveElementBy(array, (elem) => elem, movedValue, destinationValue, insertBehind);
+};
+
+/**
+ * Move an element to the front of the specified element by value
+ * @return {Array} array
+ * @param {Function} getValue return value to find moved and destination value
+ * @param {any} movedValue
+ * @param {any} destinationValue
+ * @param {boolean} insertBehind If true, insert it after the specified value
+ * @return {Array}
+ */
+const moveElementBy = (array, getValue, movedValue, destinationValue, insertBehind = false) => {
+  let movedValueIndex = -1;
+  let destinationValueIndex = -1;
+
+  array.forEach(function(elem, index) {
+    const value = getValue(elem);
+
+    if (value === movedValue) {
+      movedValueIndex = index;
+    }
+
+    if (value === destinationValue) {
+      destinationValueIndex = index;
+    }
+  });
 
   if (movedValueIndex === -1) {
     throw new Error(`The array does not include \`${movedValue}\``);
@@ -45,4 +70,5 @@ const moveElementByValue = (array, movedValue, destinationValue, insertBehind = 
 module.exports = {
   moveElement,
   moveElementByValue,
+  moveElementBy,
 };

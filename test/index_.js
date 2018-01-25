@@ -4,6 +4,7 @@ const {describe, it} = require('mocha');
 const {
   moveElement,
   moveElementByValue,
+  moveElementBy,
 } = require('../index');
 
 
@@ -80,6 +81,63 @@ describe('index', function() {
       assert.deepStrictEqual(moveElementByValue(ary, 'a', 'a', true), ['a', 'b', 'c']);
       assert.deepStrictEqual(moveElementByValue(ary, 'a', 'b', true), ['b', 'a', 'c']);
       assert.deepStrictEqual(moveElementByValue(ary, 'a', 'c', true), ['b', 'c', 'a']);
+    });
+
+    it('can move object', function() {
+      const a = {value: 'a'};
+      const b = {value: 'b'};
+      const c = {value: 'c'};
+      const ary = [a, b, c];
+      assert.deepStrictEqual(moveElementByValue(ary, a, a, true), [a, b, c]);
+      assert.deepStrictEqual(moveElementByValue(ary, a, b, true), [b, a, c]);
+      assert.deepStrictEqual(moveElementByValue(ary, a, c, true), [b, c, a]);
+    });
+  });
+
+  describe('moveElementBy', function() {
+    const a = {value: 'a'};
+    const b = {value: 'b'};
+    const c = {value: 'c'};
+    const ary = [a, b, c];
+
+    function getValue(elem) {
+      return elem.value;
+    }
+
+    it('can move upward the start index', function() {
+      assert.deepStrictEqual(moveElementBy(ary, getValue, 'b', 'a'), [b, a, c]);
+      assert.deepStrictEqual(moveElementBy(ary, getValue, 'c', 'a'), [c, a, b]);
+      assert.deepStrictEqual(moveElementBy(ary, getValue, 'c', 'b'), [a, c, b]);
+    });
+
+    it('can move downward the start index', function() {
+      assert.deepStrictEqual(moveElementBy(ary, getValue, 'a', 'b'), [a, b, c]);
+      assert.deepStrictEqual(moveElementBy(ary, getValue, 'a', 'c'), [b, a, c]);
+      assert.deepStrictEqual(moveElementBy(ary, getValue, 'b', 'c'), [a, b, c]);
+    });
+
+    it('can move the same index', function() {
+      assert.deepStrictEqual(moveElementBy(ary, getValue, 'a', 'a'), [a, b, c]);
+      assert.deepStrictEqual(moveElementBy(ary, getValue, 'b', 'b'), [a, b, c]);
+      assert.deepStrictEqual(moveElementBy(ary, getValue, 'c', 'c'), [a, b, c]);
+    });
+
+    it('should throw an error if `movedValue` is not included in the array', function() {
+      assert.throws(() => {
+        moveElementBy(ary, getValue, 'not_included', 'a');
+      }, /not_included/);
+    });
+
+    it('should throw an error if `destinationValue` is not included in the array', function() {
+      assert.throws(() => {
+        moveElementBy(ary, getValue, 'a', 'not_included');
+      }, /not_included/);
+    });
+
+    it('can move to the end of the element specified by `insertBehind=true`', function() {
+      assert.deepStrictEqual(moveElementBy(ary, getValue, 'a', 'a', true), [a, b, c]);
+      assert.deepStrictEqual(moveElementBy(ary, getValue, 'a', 'b', true), [b, a, c]);
+      assert.deepStrictEqual(moveElementBy(ary, getValue, 'a', 'c', true), [b, c, a]);
     });
   });
 });
