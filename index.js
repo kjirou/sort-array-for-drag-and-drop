@@ -5,8 +5,8 @@
  * @param {number} toIndex zero-based index, only >= 0
  * @return {Array}
  */
-const moveElement = (array, fromIndex, toIndex) => {
-  const newArray = array.slice();
+var moveElement = function moveElement(array, fromIndex, toIndex) {
+  var newArray = array.slice();
 
   if (toIndex < fromIndex) {
     newArray.splice(fromIndex, 1);
@@ -27,8 +27,12 @@ const moveElement = (array, fromIndex, toIndex) => {
  * @param {boolean} insertBehind If true, insert it after the specified value
  * @return {Array}
  */
-const moveElementByValue = (array, movedValue, destinationValue, insertBehind = false) => {
-  return moveElementBy(array, (elem) => elem, movedValue, destinationValue, insertBehind);
+var moveElementByValue = function moveElementByValue(array, movedValue, destinationValue) {
+  var insertBehind = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+  return moveElementBy(array, function(elem) {
+    return elem;
+  }, movedValue, destinationValue, insertBehind);
 };
 
 /**
@@ -40,12 +44,14 @@ const moveElementByValue = (array, movedValue, destinationValue, insertBehind = 
  * @param {boolean} insertBehind If true, insert it after the specified value
  * @return {Array}
  */
-const moveElementBy = (array, getValue, movedValue, destinationValue, insertBehind = false) => {
-  let movedValueIndex = -1;
-  let destinationValueIndex = -1;
+var moveElementBy = function moveElementBy(array, getValue, movedValue, destinationValue) {
+  var insertBehind = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+
+  var movedValueIndex = -1;
+  var destinationValueIndex = -1;
 
   array.forEach(function(elem, index) {
-    const value = getValue(elem);
+    var value = getValue(elem);
 
     if (value === movedValue) {
       movedValueIndex = index;
@@ -57,18 +63,18 @@ const moveElementBy = (array, getValue, movedValue, destinationValue, insertBehi
   });
 
   if (movedValueIndex === -1) {
-    throw new Error(`The array does not include \`${movedValue}\``);
+    throw new Error('The array does not include `' + movedValue + '`');
   } else if (destinationValueIndex === -1) {
-    throw new Error(`The array does not include \`${destinationValue}\``);
+    throw new Error('The array does not include `' + destinationValue + '`');
   }
 
-  const toIndex = destinationValueIndex + (insertBehind ? 1 : 0);
+  var toIndex = destinationValueIndex + (insertBehind ? 1 : 0);
 
   return moveElement(array, movedValueIndex, toIndex);
 };
 
 module.exports = {
-  moveElement,
-  moveElementByValue,
-  moveElementBy,
+  moveElement: moveElement,
+  moveElementByValue: moveElementByValue,
+  moveElementBy: moveElementBy,
 };
